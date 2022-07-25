@@ -2,64 +2,65 @@ import { galleryItems } from './gallery-items.js';
  
 // Change code below this line
 
-// const galleryContainer = document.querySelector(".gallery");
-// const galleryToInclude = galleryItems.map(item => `<div class="gallery__item">
-//     <a class="gallery__link" href="${item.original}">
-//         <img class="gallery__image"
-//             src="${item.preview}"
-//             data-source="${item.original}"
-//             alt="${item.description}"
-//         />
-//     </a>
-// </div>`).join("");
-
-// galleryContainer.innerHTML = galleryToInclude;
-
-
+// Gallery Construction
 
 const galleryContainer = document.querySelector(".gallery");
 const galleryToInclude = galleryItems.map(item => `<div class="gallery__item">
-    
+
+    <a class="gallery__link" href="${item.original}">
         <img class="gallery__image"
             src="${item.preview}"
             data-source="${item.original}"
             alt="${item.description}"
         />
-    
+    </a>    
 </div>`).join("");
 
 galleryContainer.innerHTML = galleryToInclude;
 
+const galleryLinkElement = document.querySelectorAll(".gallery__link");
+
+galleryLinkElement.forEach(() => {
+    addEventListener("click", (event) => event.preventDefault());
+});
+
+// Modal Opening and Closure 
 
 galleryContainer.addEventListener("click", onClickModal);
 
-function onClickModal(event) { 
+function onClickModal(event) {
+
+    if (event.target.nodeName !== "IMG") { 
+        return;
+    }
+
+    const closeModal = (e) => { 
+        if (e.key === "Escape") { 
+            imageRealSize.close();
+        }
+    }
 
     const imageRealSize = basicLightbox.create(`
     <div class="modal">
-       <img width="800" height="600"
+       <img
             src="${event.target.dataset.source}"
         />
-    </div>`
-    );
+    </div>`, {
+        onClose: () => { 
+            document.removeEventListener("keyup", closeModal);
+        }
+    });
     
     imageRealSize.show()
+
+    const imageRealSizeClose = document.querySelector(".modal");
+
+    document.addEventListener("keyup", closeModal);
+
+    const onClickCloseModal = (event) => {
+        imageRealSize.close();
+        event.target.removeEventListener("click", onClickCloseModal);
+    }
+
+    imageRealSizeClose.addEventListener("click", onClickCloseModal);
 }
-
-
-
-
-
-// const instance = basicLightbox.create(`
-//     <img src="https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg" width="800" height="600">
-// `)
-
-// instance.show()
-
-
-
-
-
-
-// On galleryItem click - v1 - 18:00
-// 20:48 - 12-14
