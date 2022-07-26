@@ -32,13 +32,13 @@ function onClickModal(event) {
 
     if (event.target.nodeName !== "IMG") { 
         return;
-    }
+    };
 
-    const closeModal = (e) => { 
-        if (e.key === "Escape") { 
+    const closeModal = (e) => {
+        if (e.key === "Escape") {
             imageRealSize.close();
-        }
-    }
+        };
+    };
 
     const imageRealSize = basicLightbox.create(`
     <div class="modal">
@@ -48,10 +48,10 @@ function onClickModal(event) {
     </div>`, {
         onClose: () => { 
             document.removeEventListener("keyup", closeModal);
-        }
+        };
     });
     
-    imageRealSize.show()
+    imageRealSize.show();
 
     const imageRealSizeClose = document.querySelector(".modal");
 
@@ -60,7 +60,7 @@ function onClickModal(event) {
     const onClickCloseModal = (event) => {
         imageRealSize.close();
         event.target.removeEventListener("click", onClickCloseModal);
-    }
+    };
 
     imageRealSizeClose.addEventListener("click", onClickCloseModal);
-}
+};
