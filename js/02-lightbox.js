@@ -12,7 +12,7 @@ const galleryToInclude = galleryItems.map(item => `
     </a>    
 `).join("");
 
-galleryContainer.innerHTML = galleryToInclude;
+galleryContainer.insertAdjacentHTML("beforeend", galleryToInclude);
 
 const galleryLinkElement = document.querySelectorAll(".gallery__link");
 

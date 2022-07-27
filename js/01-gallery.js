@@ -16,7 +16,7 @@ const galleryToInclude = galleryItems.map(item => `<div class="gallery__item">
     </a>    
 </div>`).join("");
 
-galleryContainer.innerHTML = galleryToInclude;
+galleryContainer.insertAdjacentHTML("beforeend", galleryToInclude);
 
 const galleryLinkElement = document.querySelectorAll(".gallery__link");
 
@@ -48,10 +48,12 @@ function onClickModal(event) {
     </div>`, {
         onClose: () => { 
             document.removeEventListener("keyup", closeModal);
-        };
+        }
     });
     
     imageRealSize.show();
+
+    // add event on onShow
 
     const imageRealSizeClose = document.querySelector(".modal");
 
