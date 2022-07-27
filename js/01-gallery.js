@@ -50,19 +50,16 @@ function onClickModal(event) {
             document.removeEventListener("keyup", closeModal);
         }
     });
+
+    imageRealSize.show(() => imageRealSizeClose.addEventListener("click", onClickCloseModal));
     
-    imageRealSize.show();
-
-    // add event on onShow
-
     const imageRealSizeClose = document.querySelector(".modal");
 
     document.addEventListener("keyup", closeModal);
-
+    
     const onClickCloseModal = (event) => {
         imageRealSize.close();
         event.target.removeEventListener("click", onClickCloseModal);
     };
-
-    imageRealSizeClose.addEventListener("click", onClickCloseModal);
+  
 };
