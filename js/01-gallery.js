@@ -61,5 +61,5 @@ function onClickModal(event) {
         imageRealSize.close();
         event.target.removeEventListener("click", onClickCloseModal);
     };
-  
+
 };
