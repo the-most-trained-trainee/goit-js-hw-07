@@ -18,10 +18,10 @@ const galleryToInclude = galleryItems.map(item => `<div class="gallery__item">
 
 galleryContainer.insertAdjacentHTML("beforeend", galleryToInclude);
 
-const galleryLinkElement = document.querySelectorAll(".gallery__link");
+const galleryLinkElements = document.querySelectorAll(".gallery__link");
 
-galleryLinkElement.forEach(() => {
-    addEventListener("click", (event) => event.preventDefault());
+galleryLinkElements.forEach((galleryLinkElement) => {
+    galleryLinkElement.addEventListener("click", (event) => event.preventDefault())
 });
 
 // Modal Opening and Closure 
